@@ -1,0 +1,100 @@
+
+
+//Manipulation de sed
+
+************
+FICHIER DE BASE
+**********
+Bonjour,
+
+Paul:Je suis le petit chaperon rouge NOM: et j'en pense bien des choses de tout cela.
+
+Qui êtes vous et où voulez-vous aller?
+Moi je sais ce que je veux.
+
+et plic et ploc.
+Paul:Je suis le petit chaperon rouge NOM: et j'en pense bien des choses de tout cela.
+
+eoiezfhziulhfuzfae
+zeieofohiuaerehlar
+aifuihelarrlajklf
+
+Paul:Je suis le petit chaperon rouge NOM: et j'en pense bien des choses de tout cela.
+zeoifoihljhfjz
+aziufuialhrjhae
+zehfflherka
+Paul:Je suis le petit chaperon rouge NOM: et j'en pense bien des choses de tout cela.
+**************************
+**************************
+
+
+nano test_de_sed.txt
+
+sed '3,/^zeh.*/s/e/@/' test_de_sed.txt > resultat.txt
+
+sed '3,/^zeh.*/s/e/@/6' test_de_sed.txt > resultat.txt
+
+
+ sed '3,/^zeh.*/s/e/@/g' test_de_sed.txt > resultat.txt
+
+
+a="Bonjour,
+
+Ceci est un fichier de test.
+Ici la ligne numéro 4.
+
+# ceci pourrait être un commentaire
+Ici la ligne numéro 7.
+
+Au revoir"
+
+
+echo -e "$a" | sed 'N;s/\n//'
+Bonjour,
+Ceci est un fichier de test.Ici la ligne numéro 4.
+# ceci pourrait être un commentaire
+Ici la ligne numéro 7.
+Au revoir
+
+
+echo -e "$a" | sed 'N;s/\n//Mg;P'
+Bonjour,
+Bonjour,
+Ceci est un fichier de test.Ici la ligne numéro 4.
+Ceci est un fichier de test.Ici la ligne numéro 4.
+# ceci pourrait être un commentaire
+# ceci pourrait être un commentaire
+Ici la ligne numéro 7.
+Ici la ligne numéro 7.
+Au revoir
+
+************************************************************************************************
+*******************************************************************************************
+******************************************************************************************
+Découpage en groupes et inversions diverses
+*********************************************************************************************
+*******************************************************************************************
+
+sed '3,/^zeh.*/s/\(Paul\)\(.*\)\(NOM\)/\3\2\1/' test_de_sed.txt > resultat.txt
+--> Résultat
+Bonjour,
+
+NOM:Je suis le petit chaperon rouge Paul: et j'en pense bien des choses de tout cela.
+
+Qui êtes vous et où voulez-vous aller?
+Moi je sais ce que je veux.
+
+et plic et ploc.
+NOM:Je suis le petit chaperon rouge Paul: et j'en pense bien des choses de tout cela.
+
+eoiezfhziulhfuzfae
+zeieofohiuaerehlar
+aifuihelarrlajklf
+
+NOM:Je suis le petit chaperon rouge Paul: et j'en pense bien des choses de tout cela.
+zeoifoihljhfjz
+aziufuialhrjhae
+zehfflherka
+Paul:Je suis le petit chaperon rouge NOM: et j'en pense bien des choses de tout cela.
+
+
